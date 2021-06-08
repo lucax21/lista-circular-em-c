@@ -49,3 +49,85 @@ char lista_vazia(Lista *li){
 	else
 		return 0;
 }
+
+char insere_lista_inicio(Lista *li, struct ED_LE ed){
+	if(li == NULL)
+		return 0;
+	Elem *no = (Elem*)malloc(sizeof(Elem));
+	if(no == NULL)
+		return 0;
+	no->dados = ed;
+
+	// caso a lista esteja vazia: insere no inicio
+	if((*li) == NULL){
+		*li = no;
+		no->prox = no;
+	}
+	else {
+		Elem *aux = *li;
+		while(aux->prox != (*li))
+			aux = aux->prox;
+
+		aux->prox = no;
+		no->prox = *li;
+		*li = no;
+	}
+
+	return 1;
+}
+
+char insere_lista_final(Lista *li, struct ED_LE ed){
+	if(li == NULL)
+		return 0;
+	Elem *no = (Elem*)malloc(sizeof(Elem));
+	if(no == NULL)
+		return 0;
+	no->dados = ed;
+	if((*li) == NULL){
+		*li = no;
+		no->prox = no;
+	}
+	else{
+		Elem *aux = *li;
+		while (aux->prox != (*li))
+			aux= aux->prox;
+
+		aux->prox = no;
+		no->prox = *li;
+	}
+	return 1;
+}
+
+char insere_lista_ordenada(Lista *li, struct ED_LE ed){
+	if(li == NULL)
+		return 0;
+	Elem *no = (Elem*)malloc(sizeof(Elem));
+	if(no == NULL)
+		return 0;
+
+	no->dados = ed;
+	if((*li) == NULL){
+		*li = no;
+		no->prox = no;
+		return 1;
+	}
+	else{
+		if((*li)->dados.dado > ed.dado){
+			Elem *atual = *li;
+			while(atual->prox != (*li))
+				atual = atual->prox;
+			no->prox = *li;
+			atual->prox = no;
+			*li = no;
+			return 1;
+		}
+		Elem *ant = (*li), *atual = (*li)->prox;
+		while(atual != (*li) && atual->dados.dado < ed.dado){
+			ant = atual;
+			atual = atual->prox;
+		}
+		ant->prox = no;
+		no->prox = atual;
+		return 1;
+	}
+}
