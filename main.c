@@ -91,7 +91,7 @@ int main(){
 				else
 					printf("Ops\n");
 				break;
-		/*	case 9:
+			case 9:
 				printf("Digite o valor para consulta: ");
 				scanf("%d", &num);
 				if(consulta_lista_conteudo(li, num, &ed))
@@ -112,7 +112,7 @@ int main(){
 			case 11:
 				imprime_lista(li);
 				break;
-	*/		default:
+			default:
 				//printf("opcao invalida\n");
 				break;
 

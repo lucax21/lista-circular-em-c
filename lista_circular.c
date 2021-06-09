@@ -161,7 +161,7 @@ char remove_lista_final(Lista *li){
 		return 1;
 	}
 	Elem *ant,*no = *li;
-	while(no->prox != NULL){
+	while(no->prox != (*li)){
 		ant = no;
 		no=no->prox;
 	}
@@ -202,5 +202,48 @@ char remove_lista(Lista *li, int dado){
 }
 
 void imprime_lista(Lista *li){
+	if(li == NULL)
+	       printf("Lista nao existe\n");	
+	else if((*li)== NULL)
+		printf("Lista vazia\n");
+	else{
+		Elem *aux = *li;
+		do {
+			printf(" %d ", aux->dados.dado);
+			aux = aux->prox;
+		}
+		while(aux != (*li));
+		printf("\n");
+	}
+}
+
+char consulta_lista_pos(Lista *li, int pos, struct ED_LE *ed){
+	if(li == NULL || (*li) == NULL)
+		return 0;
+	Elem *no = *li;
+	int i=1;
+	while(no->prox != (*li) && i < pos){
+		no = no->prox;
+		i++;
+	}
+	if(i != pos)
+		return 0;
+	else{
+		*ed = no->dados;
+		return 1;
+	}
+}
+
+char consulta_lista_conteudo(Lista *li, int dado, struct ED_LE *ed){
 	if(li == NULL || (*li)== NULL)
+		return 0;
+	Elem *no= *li;
+	while(no->prox != (*li) && no->dados.dado != dado)
+		no = no->prox;
+	if(no->dados.dado != dado)
+		return 0;
+	else{
+		*ed = no->dados;
+		return 1;
+	}
 }

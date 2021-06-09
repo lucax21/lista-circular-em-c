@@ -25,3 +25,7 @@ char remove_lista_final(Lista *li);
 char remove_lista(Lista *li, int dado);
 
 void imprime_lista(Lista *li);
+
+char consulta_lista_pos(Lista *li, int pos, struct ED_LE *ed);
+
+char consulta_lista_conteudo(Lista *li, int dado, struct ED_LE *ed);
