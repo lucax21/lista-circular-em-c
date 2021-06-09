@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include "lista_circular.h"
 
 struct elemento {
@@ -130,4 +131,76 @@ char insere_lista_ordenada(Lista *li, struct ED_LE ed){
 		no->prox = atual;
 		return 1;
 	}
+}
+
+char remove_lista_inicio(Lista *li){
+	if(li == NULL || (*li) == NULL)
+		return 0;
+
+	if((*li) == (*li)->prox){
+		free(li);
+		*li = NULL;
+		return 1;
+	}
+	Elem *atual = *li;
+	while(atual->prox != (*li))
+		atual = atual->prox;
+	Elem *no = *li;
+	atual->prox = no->prox;
+	*li = no->prox;
+	free(no);
+	return 1;
+}
+
+char remove_lista_final(Lista *li){
+	if(li == NULL || (*li) == NULL)
+		return 0;
+	if((*li) == (*li)->prox){
+		free(*li);
+		*li=NULL;
+		return 1;
+	}
+	Elem *ant,*no = *li;
+	while(no->prox != NULL){
+		ant = no;
+		no=no->prox;
+	}
+	ant->prox = no->prox;
+	free(no);
+	return 1;
+}
+
+char remove_lista(Lista *li, int dado){
+	if(li == NULL ||(*li) == NULL)
+		return 0;
+	Elem *no=*li;
+	if(no->dados.dado == dado){
+		if(no == no->prox){
+			free(no);
+			*li = NULL;
+			return 1;
+		}
+		else{
+			Elem *ult = *li;
+			while(ult->prox != (*li))
+				ult = ult->prox;
+			*li = (*li)->prox;
+			free(no);
+		}
+	}
+	Elem *ant = no;
+	no = no->prox;
+	while(no != (*li) && no->dados.dado != dado){
+		ant = no;
+		no = no->prox;
+	}
+	if(no == *li)
+		return 0;
+	ant->prox = no->prox;
+	free(no);
+	return 1;
+}
+
+void imprime_lista(Lista *li){
+	if(li == NULL || (*li)== NULL)
 }

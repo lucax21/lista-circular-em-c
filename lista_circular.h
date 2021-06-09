@@ -17,3 +17,11 @@ char insere_lista_inicio(Lista *li, struct ED_LE ed);
 char insere_lista_final(Lista *li, struct ED_LE ed);
 
 char insere_lista_ordenada(Lista *li, struct ED_LE ed);
+
+char remove_lista_inicio(Lista *li);
+
+char remove_lista_final(Lista *li);
+
+char remove_lista(Lista *li, int dado);
+
+void imprime_lista(Lista *li);

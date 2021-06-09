@@ -6,7 +6,7 @@ int main(){
 	Lista *li;
 	struct ED_LE ed;
 	int num;
-	char op;
+	short int op;
 
 	do{
 		printf("0 - Sair\n");
@@ -22,7 +22,7 @@ int main(){
 		printf("10 - Consulta pela posicao\n");
 		printf("11 - Imprimir lista\n");
 
-		scanf("%d", &op);
+		scanf("%hd", &op);
 
 		switch(op){
 			case 1:
@@ -35,7 +35,7 @@ int main(){
 					printf("Ops - Erro ao criar a lista\n");
 				break;
 
-		/*	case 2:
+			case 2:
 				libera_lista(li);
 				printf("Lista liberada\n");
 				break;
@@ -63,7 +63,7 @@ int main(){
 				printf("Inserir ordenado.\nDigite o valor: ");
 				scanf("%d", &ed.dado);
 				printf("valor digitado %d\n", ed.dado);
-				if(insere_lista_ordenado(li,ed))
+				if(insere_lista_ordenada(li,ed))
 					printf("Sucesso\n");
 				else
 					printf("Ops\n");
@@ -91,7 +91,7 @@ int main(){
 				else
 					printf("Ops\n");
 				break;
-			case 9:
+		/*	case 9:
 				printf("Digite o valor para consulta: ");
 				scanf("%d", &num);
 				if(consulta_lista_conteudo(li, num, &ed))
