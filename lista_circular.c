@@ -186,6 +186,7 @@ char remove_lista(Lista *li, int dado){
 				ult = ult->prox;
 			*li = (*li)->prox;
 			free(no);
+			return 1;
 		}
 	}
 	Elem *ant = no;
